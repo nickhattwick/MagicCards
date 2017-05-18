@@ -14,7 +14,14 @@ class GameControl:
         self.dpile = []
         self.deck = deck
         self.playedland = False
-        self.mana = Mana(0)
+        self.mana = {
+            "red" : 0,
+            "blue" : 0,
+            "green" : 0,
+            "black" : 0,
+            "white" : 0,
+            "colorless" : 0
+        }
 
         self.attributes = [self.hand, self.field, self.lands, self.dpile, self.deck, self.playedland, self.mana]
         self.functions = [self.draw, self.move_card, self.play_land, self.tap_for_mana, self.tap_all, self.summon, self.untap_all]
@@ -53,7 +60,7 @@ class GameControl:
         if card.kind == "land":
             if not card.tapped:
                 card.tapped = True
-                self.mana.amount = self.mana.amount + 1
+                self.mana[card.color] = self.mana[card.color] + 1
             else:
                 print("That card is already tapped")
         else:
