@@ -1,11 +1,15 @@
 class Card:
-    def __init__(self, kind, name, cost=0, power=0):
+    def __init__(self, kind, name, cost = None, subtype = None):
         self.kind = kind
         self.name = name
-        self.cost = cost
-        self.power = power
+        self.owner = None
 
-        self.tapped = False
+        self.cost = cost
+        self.subtype = subtype
+        self.power = power
+        self.toughness = toughness
+        self.effect = effect
+
         self.attacked = False
         self.blocked = False
 
@@ -15,13 +19,32 @@ class Card:
     def __repr__(self):
         return '{}'.format(self.name)
 
+class Permanent(Card):
+    def __init__(self):
+        self.tapped = False
+
     def tap(self):
         self.tapped = True
 
     def untap(self):
         self.tapped = False
 
+class Land(Permanent, color = None, ability = None):
+    def tap_for_mana(self):
+        created_mana = Mana(color)
+        return created_mana
 
+class Creature(Card, ):
+
+
+class Sorcery(Card, effect):
+
+
+class Intant(Card, effect):
+
+class Artifact(Card,):
+
+class Creature(Card,):
 #deck = []
 #for _ in range(20):
 #    deck.append(Card('land', "Land"))
